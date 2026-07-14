@@ -9,12 +9,18 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as ReportsRouteImport } from './routes/reports'
 import { Route as PreviewRouteImport } from './routes/preview'
 import { Route as MlRouteImport } from './routes/ml'
 import { Route as AnalyzeRouteImport } from './routes/analyze'
 import { Route as IndexRouteImport } from './routes/index'
 
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ReportsRoute = ReportsRouteImport.update({
   id: '/reports',
   path: '/reports',
@@ -47,6 +53,7 @@ export interface FileRoutesByFullPath {
   '/ml': typeof MlRoute
   '/preview': typeof PreviewRoute
   '/reports': typeof ReportsRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -54,6 +61,7 @@ export interface FileRoutesByTo {
   '/ml': typeof MlRoute
   '/preview': typeof PreviewRoute
   '/reports': typeof ReportsRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -62,13 +70,21 @@ export interface FileRoutesById {
   '/ml': typeof MlRoute
   '/preview': typeof PreviewRoute
   '/reports': typeof ReportsRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/analyze' | '/ml' | '/preview' | '/reports'
+  fullPaths: '/' | '/analyze' | '/ml' | '/preview' | '/reports' | '/sitemap.xml'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/analyze' | '/ml' | '/preview' | '/reports'
-  id: '__root__' | '/' | '/analyze' | '/ml' | '/preview' | '/reports'
+  to: '/' | '/analyze' | '/ml' | '/preview' | '/reports' | '/sitemap.xml'
+  id:
+    | '__root__'
+    | '/'
+    | '/analyze'
+    | '/ml'
+    | '/preview'
+    | '/reports'
+    | '/sitemap.xml'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -77,10 +93,18 @@ export interface RootRouteChildren {
   MlRoute: typeof MlRoute
   PreviewRoute: typeof PreviewRoute
   ReportsRoute: typeof ReportsRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/reports': {
       id: '/reports'
       path: '/reports'
@@ -125,6 +149,7 @@ const rootRouteChildren: RootRouteChildren = {
   MlRoute: MlRoute,
   PreviewRoute: PreviewRoute,
   ReportsRoute: ReportsRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
