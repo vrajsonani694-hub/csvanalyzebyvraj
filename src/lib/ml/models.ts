@@ -149,7 +149,7 @@ export const trainRegression = (
       yTrain.map((v) => [v]),
     );
     predict = (row) => model.predict(row)[0];
-    coefficients = model.weights.slice(0, -1).map((w) => w[0]);
+    coefficients = model.weights.slice(0, -1).map((w: number[]) => w[0]);
     intercept = model.weights[model.weights.length - 1][0];
   }
 
