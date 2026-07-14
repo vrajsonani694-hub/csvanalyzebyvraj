@@ -77,25 +77,28 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "AI CSV Analyzer Pro — Explore, model, and report on your data" },
+      { title: "AI CSV Analyzer Pro  by Vraj" },
       {
         name: "description",
         content:
           "Upload a CSV to get instant statistics, correlations, interactive charts, and ready-to-run machine learning models — all in your browser.",
       },
       { name: "author", content: "AI CSV Analyzer Pro" },
-      { property: "og:title", content: "AI CSV Analyzer Pro" },
+      { property: "og:title", content: "AI CSV Analyzer Pro  by Vraj" },
       {
         property: "og:description",
         content:
-          "In-browser CSV analytics with statistics, charts, and ML — no upload servers, no waiting.",
+          "Upload a CSV to get instant statistics, correlations, interactive charts, and ready-to-run machine learning models — all in your browser.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "AI CSV Analyzer Pro  by Vraj" },
+      { name: "twitter:description", content: "Upload a CSV to get instant statistics, correlations, interactive charts, and ready-to-run machine learning models — all in your browser." },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/cd1c0c7f-acc4-4fc9-a9d5-7ac0329ddae5" },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/cd1c0c7f-acc4-4fc9-a9d5-7ac0329ddae5" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
       {
         rel: "stylesheet",
         href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap",
