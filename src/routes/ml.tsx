@@ -342,6 +342,7 @@ function ModelResults({ result }: { result: ModelResult }) {
     );
   }
 
+  if (result.algorithm !== "kmeans") return null;
   const clusterCounts = result.assignments.reduce<Record<number, number>>((acc, c) => {
     acc[c] = (acc[c] ?? 0) + 1;
     return acc;
