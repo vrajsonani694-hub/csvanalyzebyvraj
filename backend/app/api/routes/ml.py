@@ -6,6 +6,7 @@ from pathlib import Path
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
 
+from app.core.auth import require_owner
 from app.core.config import get_settings
 from app.db.session import SavedModel, Upload, get_db
 from app.schemas import TrainRequest, TrainResponse
@@ -16,9 +17,13 @@ router = APIRouter(prefix="/ml", tags=["ml"])
 
 
 @router.post("/train", response_model=TrainResponse, status_code=status.HTTP_201_CREATED)
-def train(payload: TrainRequest, db: Session = Depends(get_db)) -> TrainResponse:
+def train(
+    payload: TrainRequest,
+    db: Session = Depends(get_db),
+    owner_id: str = Depends(require_owner),
+) -> TrainResponse:
     upload = db.get(Upload, payload.upload_id)
-    if not upload:
+    if not upload or upload.owner_id != owner_id:
         raise HTTPException(status.HTTP_404_NOT_FOUND, "Upload not found.")
     df = load_dataframe(Path(upload.path))
     out_dir = get_settings().upload_dir / "models" / payload.upload_id
@@ -38,6 +43,7 @@ def train(payload: TrainRequest, db: Session = Depends(get_db)) -> TrainResponse
     model_id = uuid.uuid4().hex
     record = SavedModel(
         id=model_id,
+        owner_id=owner_id,
         upload_id=payload.upload_id,
         algorithm=result.algorithm,
         metrics=result.metrics,
@@ -49,10 +55,17 @@ def train(payload: TrainRequest, db: Session = Depends(get_db)) -> TrainResponse
 
 
 @router.get("/models/{upload_id}")
-def list_models(upload_id: str, db: Session = Depends(get_db)) -> list[dict]:
+def list_models(
+    upload_id: str,
+    db: Session = Depends(get_db),
+    owner_id: str = Depends(require_owner),
+) -> list[dict]:
+    upload = db.get(Upload, upload_id)
+    if not upload or upload.owner_id != owner_id:
+        raise HTTPException(status.HTTP_404_NOT_FOUND, "Upload not found.")
     rows = (
         db.query(SavedModel)
-        .filter(SavedModel.upload_id == upload_id)
+        .filter(SavedModel.upload_id == upload_id, SavedModel.owner_id == owner_id)
         .order_by(SavedModel.created_at.desc())
         .all()
     )

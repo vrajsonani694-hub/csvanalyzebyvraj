@@ -5,6 +5,7 @@ from pathlib import Path
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
 
+from app.core.auth import require_owner
 from app.db.session import Upload, get_db
 from app.schemas import AnalysisResponse
 from app.services.analysis import (
@@ -18,9 +19,9 @@ from app.services.analysis import (
 router = APIRouter(prefix="/analysis", tags=["analysis"])
 
 
-def _load_upload(upload_id: str, db: Session):
+def _load_upload(upload_id: str, owner_id: str, db: Session):
     record = db.get(Upload, upload_id)
-    if not record:
+    if not record or record.owner_id != owner_id:
         raise HTTPException(status.HTTP_404_NOT_FOUND, "Upload not found.")
     path = Path(record.path)
     if not path.exists():
@@ -29,8 +30,12 @@ def _load_upload(upload_id: str, db: Session):
 
 
 @router.get("/{upload_id}", response_model=AnalysisResponse)
-def analyze(upload_id: str, db: Session = Depends(get_db)) -> AnalysisResponse:
-    _, df = _load_upload(upload_id, db)
+def analyze(
+    upload_id: str,
+    db: Session = Depends(get_db),
+    owner_id: str = Depends(require_owner),
+) -> AnalysisResponse:
+    _, df = _load_upload(upload_id, owner_id, db)
     return AnalysisResponse(
         overview=dataframe_overview(df),
         numeric=numeric_summary(df),
