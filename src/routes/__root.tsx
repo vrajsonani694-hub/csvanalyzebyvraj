@@ -77,14 +77,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "AI CSV Analyzer Pro  by Vraj" },
+      { title: "CSV Analyzer Pro by Vraj" },
       {
         name: "description",
         content:
           "Upload a CSV to get instant statistics, correlations, interactive charts, and ready-to-run machine learning models — all in your browser.",
       },
-      { name: "author", content: "AI CSV Analyzer Pro" },
-      { property: "og:title", content: "AI CSV Analyzer Pro  by Vraj" },
+      { name: "author", content: "CSV Analyzer Pro by Vraj" },
+      { property: "og:title", content: "CSV Analyzer Pro by Vraj" },
       {
         property: "og:description",
         content:
@@ -92,7 +92,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "AI CSV Analyzer Pro  by Vraj" },
+      { name: "twitter:title", content: "CSV Analyzer Pro by Vraj" },
       { name: "twitter:description", content: "Upload a CSV to get instant statistics, correlations, interactive charts, and ready-to-run machine learning models — all in your browser." },
       { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/cd1c0c7f-acc4-4fc9-a9d5-7ac0329ddae5" },
       { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/cd1c0c7f-acc4-4fc9-a9d5-7ac0329ddae5" },

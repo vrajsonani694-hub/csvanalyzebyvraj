@@ -20,7 +20,7 @@ export const Route = createFileRoute("/reports")({
   component: ReportsPage,
   head: () => ({
     meta: [
-      { title: "Reports — AI CSV Analyzer Pro" },
+      { title: "Reports — CSV Analyzer Pro by Vraj" },
       { name: "description", content: "Export PDF, Excel, CSV and JSON reports." },
     ],
   }),

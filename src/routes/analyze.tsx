@@ -43,7 +43,7 @@ export const Route = createFileRoute("/analyze")({
   component: AnalyzePage,
   head: () => ({
     meta: [
-      { title: "Analyze — AI CSV Analyzer Pro" },
+      { title: "Analyze — CSV Analyzer Pro by Vraj" },
       { name: "description", content: "Descriptive statistics, distributions, and correlations." },
     ],
   }),

@@ -41,7 +41,7 @@ export const exportExcelReport = (report: ReportPayload, filename: string): void
   const wb = XLSX.utils.book_new();
 
   const overviewSheet = XLSX.utils.aoa_to_sheet([
-    ["AI CSV Analyzer Pro — Report"],
+    ["CSV Analyzer Pro by Vraj — Report"],
     ["Dataset", report.dataset.name],
     ["Rows", report.overview.rowCount],
     ["Columns", report.overview.columnCount],
@@ -115,7 +115,7 @@ export const exportPdfReport = async (
 
   doc.setFont("helvetica", "bold");
   doc.setFontSize(20);
-  doc.text("AI CSV Analyzer Pro", 40, 50);
+  doc.text("CSV Analyzer Pro by Vraj", 40, 50);
   doc.setFontSize(12);
   doc.setFont("helvetica", "normal");
   doc.text(`Dataset: ${report.dataset.name}`, 40, 72);

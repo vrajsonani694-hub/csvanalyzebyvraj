@@ -41,7 +41,7 @@ export const Route = createFileRoute("/ml")({
   component: MLPage,
   head: () => ({
     meta: [
-      { title: "ML Studio — AI CSV Analyzer Pro" },
+      { title: "ML Studio — CSV Analyzer Pro by Vraj" },
       { name: "description", content: "Train regression, classification, or clustering models on your CSV." },
     ],
   }),

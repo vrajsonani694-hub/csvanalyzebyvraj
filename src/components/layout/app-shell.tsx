@@ -38,9 +38,9 @@ export function AppShell({ children }: { children: ReactNode }) {
             <Sparkles className="h-4 w-4" />
           </div>
           <div>
-            <p className="font-display text-sm font-semibold leading-tight">AI CSV</p>
+            <p className="font-display text-sm font-semibold leading-tight">Vraj</p>
             <p className="text-[10px] uppercase tracking-widest text-muted-foreground">
-              Analyzer Pro
+              CSV Analyzer Pro
             </p>
           </div>
         </Link>
@@ -99,7 +99,7 @@ export function AppShell({ children }: { children: ReactNode }) {
           <div>
             <p className="text-xs text-muted-foreground">Workspace</p>
             <h1 className="font-display text-lg font-semibold">
-              {active?.name ?? "AI CSV Analyzer Pro"}
+              {active?.name ?? "CSV Analyzer Pro by Vraj"}
             </h1>
           </div>
           <div className="flex items-center gap-2">
