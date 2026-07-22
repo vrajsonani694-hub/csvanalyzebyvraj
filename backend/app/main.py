@@ -29,7 +29,7 @@ async def lifespan(_: FastAPI) -> AsyncIterator[None]:
 def create_app() -> FastAPI:
     settings = get_settings()
     app = FastAPI(
-        title="AI CSV Analyzer Pro API",
+        title="CSV Analyzer Pro by Vraj API",
         version=settings.version,
         description="REST API for CSV upload, statistical analysis, ML training, and report generation.",
         lifespan=lifespan,

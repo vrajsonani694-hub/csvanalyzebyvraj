@@ -25,7 +25,7 @@ export const Route = createFileRoute("/preview")({
   component: PreviewPage,
   head: () => ({
     meta: [
-      { title: "Data preview — AI CSV Analyzer Pro" },
+      { title: "Data preview — CSV Analyzer Pro by Vraj" },
       { name: "description", content: "Search, sort, and clean your CSV dataset." },
     ],
   }),

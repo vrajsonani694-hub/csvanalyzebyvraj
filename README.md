@@ -1,4 +1,4 @@
-# AI CSV Analyzer Pro
+# CSV Analyzer Pro by Vraj
 
 An end-to-end CSV analytics workspace with statistics, interactive charts, and
 in-browser machine learning. Ships with an optional FastAPI backend that mirrors
